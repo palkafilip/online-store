@@ -1,0 +1,15 @@
+@startuml
+mainframe Register new customers
+Client -> Api_Gateway: POST /api/customers
+activate Api_Gateway
+Api_Gateway -> Customers: POST /customers
+Customers -> Database: find all customers
+Customers <- Database: return all customers
+Customers -> Customers: validate data
+Customers -> Database: try to save new customer with 0.5 success probability
+Customers <- Database: create new customer or throw runtime exception
+Customers -> Customers: return successfully or fire Hystrix fallback registration \nand save new customer for later processing
+Api_Gateway <- Customers: return HTTP Created status \nor HTTP Internal Server Error with message
+Client <- Api_Gateway: return HTTP Created status \nor HTTP Internal Server Error with message
+deactivate Api_Gateway
+@enduml

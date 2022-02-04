@@ -1,0 +1,6 @@
+@startuml
+mainframe Process purchased product event
+Products --> Kafka: send purchased product summary event
+Kafka -> Management: receive purchased product summary event
+Management -> Database: save summary
+@enduml

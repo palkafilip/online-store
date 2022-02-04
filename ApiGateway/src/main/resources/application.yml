@@ -1,0 +1,28 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      default-filters:
+        - StripPrefix=1
+      routes:
+        - id: customers
+          uri: lb://customers-app
+          predicates:
+            - Path=/api/customers/**
+        - id: products
+          uri: lb://products-app
+          predicates:
+            - Path=/api/products/**
+        - id: coupons
+          uri: lb://coupons-app
+          predicates:
+            - Path=/api/coupons/**
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    preferIpAddress: true

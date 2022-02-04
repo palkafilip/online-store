@@ -1,0 +1,8 @@
+Sprawdzenie zajętego portu
+netstat -na | find `"8081`"
+
+Wbicie do uruchomionego obrazu dockera
+docker exec -it kafka_kafka_1 bash
+
+Stworzenie nowego topica z poziomu konsoli kafki
+/opt/kafka_2.11-0.10.1.0/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test

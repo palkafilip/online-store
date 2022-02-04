@@ -1,0 +1,17 @@
+@startuml
+mainframe POST purchase product
+Client -> Api_Gateway: POST /api/products/{id}
+activate Api_Gateway
+Api_Gateway -> Products: POST /products/{id}
+Products -> Database: get product with quantity information
+Products <- Database: return product with quantity
+Products -> Customers: get customer by id
+Products <- Customers: return customer by id
+Products -> Products: validate quantity, customer data, process purchase
+Products -> Database: save purchased product
+Products --> Kafka: create summary event
+
+Api_Gateway <- Products: return HTTP Created status or HTTP Internal Server Error with message \nif any unexpected behaviour occurred during purchasing process
+Client <- Api_Gateway: return HTTP Created status \nor HTTP Internal Server Error with message
+deactivate Api_Gateway
+@enduml

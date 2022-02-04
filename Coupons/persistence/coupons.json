@@ -1,0 +1,28 @@
+{
+  "coupons": [
+    {
+      "id": 1,
+      "discountPercent": 10,
+      "discountDateStart": "01.01.2022",
+      "discountDateEnd": "05.01.2022"
+    },
+    {
+      "id": 2,
+      "discountPercent": 20,
+      "discountDateStart": "07.01.2022",
+      "discountDateEnd": "08.01.2022"
+    },
+    {
+      "id": 3,
+      "discountPercent": 15,
+      "discountDateStart": "09.01.2022",
+      "discountDateEnd": "11.01.2022"
+    },
+    {
+      "id": 4,
+      "discountPercent": 12,
+      "discountDateStart": "12.01.2022",
+      "discountDateEnd": "15.01.2022"
+    }
+  ]
+}

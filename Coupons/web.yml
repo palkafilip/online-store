@@ -1,0 +1,11 @@
+name: web
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - flask=2.0.2
+  - flask-script=2.0.6
+  - pip=21.2.4
+  - python=3.9.7
+  - requests=2.24.0

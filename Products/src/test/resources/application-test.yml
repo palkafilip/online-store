@@ -1,0 +1,5 @@
+kafka:
+  enabled: false
+eureka:
+  client:
+    enabled: false

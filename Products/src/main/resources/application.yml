@@ -1,0 +1,27 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: products-app
+  datasource:
+    url: jdbc:h2:mem:products
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+#    show-sql: true
+#logging:
+#  level:
+#    org:
+#      apache:
+#        http: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    preferIpAddress: true

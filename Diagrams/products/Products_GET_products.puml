@@ -1,0 +1,12 @@
+@startuml
+mainframe Get all products
+Client -> Api_Gateway: GET /api/products
+activate Api_Gateway
+Api_Gateway -> Products: GET /products
+Products -> Database: find all products
+
+Products <- Database: return all products
+Api_Gateway <- Products: return List<Product>
+Client <- Api_Gateway: return List<Product>
+deactivate Api_Gateway
+@enduml

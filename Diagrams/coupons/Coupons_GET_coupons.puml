@@ -1,0 +1,12 @@
+@startuml
+mainframe Get all coupons
+Client -> Api_Gateway: GET /api/coupons
+activate Api_Gateway
+Api_Gateway -> Coupons: GET /coupons
+Customers -> Database: find all coupons
+
+Customers <- Database: return all coupons
+Api_Gateway <- Customers: return all coupons
+Client <- Api_Gateway: return all active coupons
+deactivate Api_Gateway
+@enduml

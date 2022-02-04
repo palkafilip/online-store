@@ -1,0 +1,12 @@
+@startuml
+mainframe Get product by id
+Client -> Api_Gateway: GET /api/products/{id}
+activate Api_Gateway
+Api_Gateway -> Products: GET /products/{id}
+Products -> Database: get product by id
+
+Products <- Database: return product by id
+Api_Gateway <- Products: return Product or not found response
+Client <- Api_Gateway: return Product or not found response
+deactivate Api_Gateway
+@enduml

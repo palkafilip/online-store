@@ -1,0 +1,12 @@
+@startuml
+mainframe Get all customers
+Client -> Api_Gateway: GET /api/customers
+activate Api_Gateway
+Api_Gateway -> Customers: GET /customers
+Customers -> Database: find all customers
+
+Customers <- Database: return all customers
+Api_Gateway <- Customers: return List<Customer>
+Client <- Api_Gateway: return List<Customer>
+deactivate Api_Gateway
+@enduml
