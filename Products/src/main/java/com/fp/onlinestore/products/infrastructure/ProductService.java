@@ -51,7 +51,14 @@ public class ProductService {
         Float totalPrice = calculateTotalPrice(entity.getPricePerItem(), quantity);
         PurchasedProductEntity purchasedProductEntity = new PurchasedProductEntity(entity.getProduct(), customerId, quantity, totalPrice);
         purchasedProductRepository.saveAndFlush(purchasedProductEntity);
+        updateQuantityInfo(entity, quantity);
         createSummaryEvent(purchasedProductEntity);
+    }
+
+    private void updateQuantityInfo(final ProductsQuantityEntity entity, final Integer purchasedQuantity) {
+        Integer quantityRemaining = entity.getQuantity() - purchasedQuantity;
+        ProductsQuantityEntity updatedEntity = ProductsQuantityEntity.of(entity.getId(), entity.getProduct(), quantityRemaining, entity.getPricePerItem());
+        productsQuantityRepository.saveAndFlush(updatedEntity);
     }
 
     private ProductsQuantityEntity getProductsQuantityEntityById(final Integer id) {
@@ -77,7 +84,7 @@ public class ProductService {
         if (discountPercentage != 0) {
             log.info(discountPercentage + "% discount was applied");
         }
-        Float discount = (totalPrice * discountPercentage)/100;
+        Float discount = (totalPrice * discountPercentage) / 100;
 
         return totalPrice - discount;
     }
