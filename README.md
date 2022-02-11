@@ -66,6 +66,13 @@ of exposed ip addresses and ports.
 Technical microservice which works as a gate, hiding internal application architecture. Outside clients communicate with
 microservices through Api Gateway, which exposes special API and works as a proxy.
 
+## Application Containerization
+
+Application can be run using Docker. Every microservice has its own Dockerfile which contains all the information how to
+create an image. Managing each Docker image separately is not very handy, so to collect build details Docker Compose
+was used. File `docker-compose.yml` contains information about images, their dependencies, environment variables and
+networking details.
+
 ## Microservices diagrams
 
 ### Customers
